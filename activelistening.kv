@@ -1,0 +1,61 @@
+<WelcomeScreen>:
+    FloatLayout:
+    	Label:
+		    text: "ActiveListening: Welcome to the Runner's Music Player"
+		    pos_hint: {'x': 0.1, 'y': 0.9}
+		    size_hint: 0.8, 0.1
+	    Button:
+		    text: "Exit"
+		    pos_hint: {'x': 0.9, 'y': 0.1}
+		    size_hint: 0.1, 0.1
+		    on_press: app.del_win()
+	    Button:
+		    text: "Go to Music Player"
+		    pos_hint: {'x': 0.05, 'y': 0.1}
+		    size_hint: 0.2, 0.1
+		    on_press:
+		        root.manager.transition.direction = "left"
+		        root.manager.current = "player"
+        Label:
+            text: 'Enter goal distance (in km), then press "enter":'
+            pos_hint: {'x': 0.1, 'y': 0.5}
+            size_hint: 0.4, 0.1
+        Label:
+            text: 'Enter goal time (in min.), then press "enter":'
+            pos_hint: {'x': 0.1, 'y': 0.4}
+            size_hint: 0.4, 0.1
+		TextInput:
+		    id: usr_input1
+		    pos_hint: {'x': 0.5, 'y': 0.5}
+		    size_hint: 0.4, 0.1
+		    multiline: False
+            hint_text: "Goal distance"
+		    on_text_validate: root.user_input()
+		TextInput:
+		    id: usr_input2
+		    pos_hint: {'x': 0.5, 'y': 0.4}
+		    size_hint: 0.4, 0.1
+		    multiline: False
+            hint_text: "Goal time"
+            on_text_validate: root.user_input()
+
+<PlayerScreen>:
+    GridLayout:
+        rows: 5
+        cols: 1
+	    Label:
+	        text: "Whenever You Are Ready"
+	    Button:
+		    text: "PLAY"
+		    on_press: app.app_musicplay()
+	    Button:
+		    text: "PAUSE"
+		    on_press: app.app_musicpause()
+	    Button:
+		    text: "STOP"
+		    on_press: app.app_musicstop()
+		Button:
+		    text: "GO BACK"
+		    on_press:
+		        root.manager.transition.direction = "right"
+		        root.manager.current = "welcome"
